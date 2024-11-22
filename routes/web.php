@@ -18,7 +18,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         $hoy = Carbon::today();
         $reunion = Reunion::whereDate('dia', $hoy)->first();
-        $asistencia = $reunion->users()->where('user_id', Auth::user()->id)->first();
+        $asistencia = $reunion?->users()->where('user_id', Auth::user()->id)->first();
 
         return view('dashboard', compact('reunion', 'asistencia'));
     })->name('dashboard');
